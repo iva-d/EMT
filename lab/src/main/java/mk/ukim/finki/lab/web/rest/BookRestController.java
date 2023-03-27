@@ -38,7 +38,7 @@ public class BookRestController {
     }
 
     @PutMapping("/edit/{id}")
-    public ResponseEntity<Book> edit(@PathVariable Long id, @RequestBody BookDto bookDto){ 
+    public ResponseEntity<Book> edit(@PathVariable Long id, @RequestBody BookDto bookDto){
         return this.bookService.edit(id, bookDto)
                 .map(book -> ResponseEntity.ok().body(book))
                 .orElseGet(() -> ResponseEntity.badRequest().build());
@@ -54,8 +54,10 @@ public class BookRestController {
 
     @PostMapping("/rent/{id}")
     public ResponseEntity rent(@PathVariable Long id) {
+        Book book = this.bookService.findById(id).orElseThrow(() -> new BookNotFoundException(id));
+        int numCopies = book.getAvailableCopies();
         this.bookService.rentById(id);
-        if(this.bookService.findById(id).isEmpty())
+        if(book.getAvailableCopies() < numCopies)
             return ResponseEntity.ok().build();
         return ResponseEntity.badRequest().build();
     }
