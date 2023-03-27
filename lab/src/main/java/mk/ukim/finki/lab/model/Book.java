@@ -18,7 +18,7 @@ public class Book {
     @Enumerated(value = EnumType.STRING)
     private Category category;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     private Author author;
 
     private int availableCopies;
