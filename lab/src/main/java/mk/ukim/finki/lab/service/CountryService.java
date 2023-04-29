@@ -2,10 +2,8 @@ package mk.ukim.finki.lab.service;
 
 import mk.ukim.finki.lab.model.Country;
 
-import java.util.Optional;
+import java.util.List;
 
 public interface CountryService {
-
-    Optional<Country> save(Country country);
-
+    List<Country> findAll();
 }

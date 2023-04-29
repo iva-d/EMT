@@ -5,6 +5,7 @@ import mk.ukim.finki.lab.repository.CountryRepository;
 import mk.ukim.finki.lab.service.CountryService;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -17,7 +18,7 @@ public class CountryServiceImpl implements CountryService {
     }
 
     @Override
-    public Optional<Country> save(Country country) {
-        return Optional.of(this.countryRepository.save(new Country(country.getName(), country.getContinent())));
+    public List<Country> findAll() {
+        return this.countryRepository.findAll();
     }
 }

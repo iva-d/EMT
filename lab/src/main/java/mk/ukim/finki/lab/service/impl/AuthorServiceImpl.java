@@ -17,11 +17,6 @@ public class AuthorServiceImpl implements AuthorService {
         this.authorRepository = authorRepository;
     }
 
-    @Override
-    public Optional<Author> save(Author author) {
-        return Optional.of(this.authorRepository.save(new Author(author.getName(), author.getSurname(), author.getCountry())));
-    }
-
     public List<Author> findAll() {
         return this.authorRepository.findAll();
     }
